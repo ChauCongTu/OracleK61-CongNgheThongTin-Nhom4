@@ -32,7 +32,6 @@ public class DocumentController {
     // Get all categories
     @GetMapping("/")
     public List<Document> all () {
-
         return repository.findAll();
     }
 

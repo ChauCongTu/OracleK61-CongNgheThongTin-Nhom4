@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -55,4 +56,8 @@ public class Document {
 
     @Column
     private Long category_id;
+
+    @OneToMany(targetEntity = Review.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "document_id", referencedColumnName = "id")
+    private List<Review> reviews;
 }

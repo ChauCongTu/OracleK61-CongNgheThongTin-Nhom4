@@ -52,7 +52,7 @@ public class CollectionController {
         }
 
         // Gán tên file phương tiện vào trường thumb của collection
-        collection.setThumb(fileName);
+        collection.setThumb("/public/collection/thumb/" + fileName);
 
         // Lưu collection vào cơ sở dữ liệu
         collectionRepository.save(collection);
@@ -87,7 +87,7 @@ public class CollectionController {
                         }
 
                         // Gán tên file phương tiện vào trường thumb của collection
-                        collection.setThumb(fileName);
+                        collection.setThumb("/public/collection/thumb/" + fileName);
                     }
                     return collectionRepository.save(collection);
                 });
