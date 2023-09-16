@@ -128,4 +128,10 @@ public class DocumentController {
         List<Document> documents = repository.findByTitleContaining(string);
         return documents;
     }
+
+    @GetMapping("/{id}/related")
+    public List<Document> related (@PathVariable Long id) {
+        List<Document> documents = repository.findRelatedDocument(id);
+        return documents;
+    }
 }
