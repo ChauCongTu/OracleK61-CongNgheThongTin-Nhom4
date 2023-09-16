@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -21,4 +23,8 @@ public class Collection {
 
     @Column(nullable = false)
     private String thumb;
+
+    @OneToMany(targetEntity = CollectionDetail.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "collection_id", referencedColumnName = "id")
+    private List<CollectionDetail> details;
 }

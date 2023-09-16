@@ -53,6 +53,6 @@ public class Document {
     @Column()
     private Long user_id;
 
-    @Column()
+    @Column
     private Long category_id;
 }

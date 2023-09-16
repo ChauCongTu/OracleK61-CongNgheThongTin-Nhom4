@@ -32,6 +32,7 @@ public class DocumentController {
     // Get all categories
     @GetMapping("/")
     public List<Document> all () {
+
         return repository.findAll();
     }
 
@@ -84,6 +85,17 @@ public class DocumentController {
         newDocument.setIsApproved(1L);
         return repository.save(newDocument);
     }
+
+    @PutMapping(value = "/approve/{id}")
+    public Optional<Document> approve (@PathVariable Long id) {
+        Optional<Document> document = repository.findById(id);
+        document.map(doc -> {
+            doc.setIsApproved(1L);
+            return repository.save(doc);
+        });
+        return repository.findById(id);
+    }
+
     @PutMapping(value = "/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     Optional<Document> update(@ModelAttribute DocumentRequest documentRequest, @PathVariable Long id) {
         return repository.findById(id)
@@ -103,7 +115,6 @@ public class DocumentController {
                     documentItem.setContent(documentRequest.getContent());
                     documentItem.setUser_id(documentRequest.getUser_id());
                     documentItem.setCategory_id(documentRequest.getCategory_id());
-                    documentItem.setIsApproved(1L);
                     return repository.save(documentItem);
                 });
     }
