@@ -38,7 +38,7 @@ public class CategoryController {
         return categoryRepository.findById(id)
                 .map(categoryItem -> {
                     categoryItem.setName(category.getName());
-                    categoryItem.setSummary(category.getIcon());
+                    categoryItem.setSummary(category.getSummary());
                     categoryItem.setIcon(category.getIcon());
                     return categoryRepository.save(categoryItem);
                 })
