@@ -16,15 +16,13 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "http://localhost:8080", maxAge = 3600)
 @RestController
 @RequestMapping("/api/document")
 public class DocumentController {
 
     @Autowired
     private final DocumentRepository repository;
-
-    private final Path image = Paths.get("public/document/thumb");
-    private final Path file = Paths.get("public/document/file");
 
     public DocumentController(DocumentRepository repository) {
         this.repository = repository;
@@ -45,41 +43,19 @@ public class DocumentController {
         });
         return repository.findById(id);
     }
-    @PostMapping(value = "/", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public Document add (@ModelAttribute DocumentRequest documentRequest) {
+    @PostMapping(value = "/")
+    public Document add (@RequestBody Document document) {
         Document newDocument = new Document();
-
-        // Xử lý tải lên tập tin
-
-        try {
-            Files.copy(documentRequest.getThumb().getInputStream(), this.image.resolve(documentRequest.getThumb().getOriginalFilename()));
-        } catch (Exception e) {
-            if (e instanceof FileAlreadyExistsException) {
-                throw new RuntimeException("A thumb of that name already exists.");
-            }
-
-            throw new RuntimeException(e.getMessage());
-        }
-        try {
-            Files.copy(documentRequest.getFilePath().getInputStream(), this.file.resolve(documentRequest.getFilePath().getOriginalFilename()));
-        } catch (Exception e) {
-            if (e instanceof FileAlreadyExistsException) {
-                throw new RuntimeException("A file of that name already exists.");
-            }
-
-            throw new RuntimeException(e.getMessage());
-        }
-        String thumb_path = "/public/document/thumb/" + documentRequest.getThumb().getOriginalFilename();
-        String file_path = "/public/document/file/" + documentRequest.getFilePath().getOriginalFilename();
-        String type = documentRequest.getFilePath().getContentType();
-        newDocument.setType(type);
-        newDocument.setThumb(thumb_path);
-        newDocument.setFilePath(file_path);
-        newDocument.setTitle(documentRequest.getTitle());
-        newDocument.setSummary(documentRequest.getSummary());
-        newDocument.setContent(documentRequest.getContent());
-        newDocument.setUser_id(documentRequest.getUser_id());
-        newDocument.setCategory_id(documentRequest.getCategory_id());
+        int index = document.getFilePath().lastIndexOf('.');
+        String extension = document.getFilePath().substring(index + 1);
+        newDocument.setType(extension);
+        newDocument.setThumb(document.getThumb());
+        newDocument.setFilePath(document.getFilePath());
+        newDocument.setTitle(document.getTitle());
+        newDocument.setSummary(document.getSummary());
+        newDocument.setContent(document.getContent());
+        newDocument.setUser_id(document.getUser_id());
+        newDocument.setCategory_id(document.getCategory_id());
         newDocument.setViewCount(0L);
         newDocument.setDownloadCount(0L);
         newDocument.setIsApproved(1L);
@@ -96,35 +72,20 @@ public class DocumentController {
         return repository.findById(id);
     }
 
-    @PutMapping(value = "/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    Optional<Document> update(@ModelAttribute DocumentRequest documentRequest, @PathVariable Long id) {
+    @PutMapping(value = "/{id}")
+    Optional<Document> update(@RequestBody Document document, @PathVariable Long id) {
         return repository.findById(id)
                 .map(documentItem -> {
-                    if (documentRequest.getFilePath() != null) {
-                        String file_path = "/public/document/file/" + documentRequest.getFilePath().getOriginalFilename();
-                        String type = documentRequest.getFilePath().getContentType();
-                        documentItem.setType(type);
-                        documentItem.setFilePath(file_path);
-                        try {
-                            Files.copy(documentRequest.getFilePath().getInputStream(), this.file.resolve(documentRequest.getFilePath().getOriginalFilename()));
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
-                    if (documentRequest.getThumb() != null) {
-                        String thumb_path = "/public/document/thumb/" + documentRequest.getThumb().getOriginalFilename();
-                        documentItem.setThumb(thumb_path);
-                        try {
-                            Files.copy(documentRequest.getThumb().getInputStream(), this.image.resolve(documentRequest.getThumb().getOriginalFilename()));
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
-                    documentItem.setTitle(documentRequest.getTitle());
-                    documentItem.setSummary(documentRequest.getSummary());
-                    documentItem.setContent(documentRequest.getContent());
-                    documentItem.setUser_id(documentRequest.getUser_id());
-                    documentItem.setCategory_id(documentRequest.getCategory_id());
+                    int index = document.getFilePath().lastIndexOf('.');
+                    String extension = document.getFilePath().substring(index + 1);
+                    documentItem.setType(extension);
+                    documentItem.setThumb(document.getThumb());
+                    documentItem.setFilePath(document.getFilePath());
+                    documentItem.setTitle(document.getTitle());
+                    documentItem.setSummary(document.getSummary());
+                    documentItem.setContent(document.getContent());
+                    documentItem.setUser_id(document.getUser_id());
+                    documentItem.setCategory_id(document.getCategory_id());
                     return repository.save(documentItem);
                 });
     }
