@@ -1,11 +1,11 @@
 --------------------------------------------------------
---  File created - Saturday-September-16-2023   
+--  File created - Sunday-September-17-2023   
 --------------------------------------------------------
 --------------------------------------------------------
 --  DDL for Sequence AUTO_ID
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "C##NHOM4"."AUTO_ID"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 23 NOCACHE  NOORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
+   CREATE SEQUENCE  "C##NHOM4"."AUTO_ID"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 28 NOCACHE  NOORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
 --------------------------------------------------------
 --  DDL for Sequence SEQUENCE_NAME
 --------------------------------------------------------
@@ -72,7 +72,7 @@
 	"USER_ID" NUMBER, 
 	"CATEGORY_ID" NUMBER, 
 	"CREATED_AT" DATE, 
-	"THUMB" VARCHAR2(100 BYTE), 
+	"THUMB" VARCHAR2(255 BYTE), 
 	"ISAPPROVED" NUMBER(1,0), 
 	"CONTENT" VARCHAR2(1000 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
@@ -119,36 +119,39 @@
   TABLESPACE "USERS" ;
 REM INSERTING into C##NHOM4.CATEGORIES
 SET DEFINE OFF;
-Insert into C##NHOM4.CATEGORIES (ID,NAME,SUMMARY,ICON) values (1,'B�o c�o khoa h?c','Tuy?n t?p c�c b�i lu?n b�o c�o khoa h?c tham kh?o danh cho sinh vi�n','fa fa-icon');
-Insert into C##NHOM4.CATEGORIES (ID,NAME,SUMMARY,ICON) values (6,'C�ng ngh? th�ng tin','Tuy?n t?p c�c b�i lu?n b�o c�o khoa h?c tham kh?o danh cho sinh vi�n','fa fa-icon');
-Insert into C##NHOM4.CATEGORIES (ID,NAME,SUMMARY,ICON) values (3,'??i s? - gi?i t�ch','Tuy?n t?p c�c b�i lu?n b�o c�o khoa h?c tham kh?o danh cho sinh vi�n','fa fa-icon');
-Insert into C##NHOM4.CATEGORIES (ID,NAME,SUMMARY,ICON) values (4,'H�a h?c - V?t l�','Tuy?n t?p c�c b�i lu?n b�o c�o khoa h?c tham kh?o danh cho sinh vi�n','fa fa-icon');
-Insert into C##NHOM4.CATEGORIES (ID,NAME,SUMMARY,ICON) values (20,'B�o c�o khoa h?c','Tuy?n t?p c�c b�i lu?n b�o c�o khoa h?c tham kh?o danh cho sinh vi�n','fa fa-icon');
+Insert into C##NHOM4.CATEGORIES (ID,NAME,SUMMARY,ICON) values (1,'Báo cáo khoa học','Tuyển tập các bài luận báo cáo khoa học tham khảo danh cho sinh viên','fa fa-icon');
+Insert into C##NHOM4.CATEGORIES (ID,NAME,SUMMARY,ICON) values (25,'Xác suất thống kê','Tuyển tập xác suất thống kê','fa-icon');
+Insert into C##NHOM4.CATEGORIES (ID,NAME,SUMMARY,ICON) values (6,'Công nghệ thông tin','Tuyển tập các bài luận báo cáo khoa học tham khảo danh cho sinh viên','fa fa-icon');
+Insert into C##NHOM4.CATEGORIES (ID,NAME,SUMMARY,ICON) values (3,'Đại số - giải tích','Tuyển tập các bài luận báo cáo khoa học tham khảo danh cho sinh viên','fa fa-icon');
+Insert into C##NHOM4.CATEGORIES (ID,NAME,SUMMARY,ICON) values (4,'Hóa học - Vật lý','Tuyển tập các bài luận báo cáo khoa học tham khảo danh cho sinh viên','fa fa-icon');
 REM INSERTING into C##NHOM4.COLLECTIONS
 SET DEFINE OFF;
-Insert into C##NHOM4.COLLECTIONS (ID,NAME,THUMB) values (1,'?? thi HSG Tr??ng chuy�n Mary Cury 2023','/public/collection/thumb/cource_piano.jpg');
-Insert into C##NHOM4.COLLECTIONS (ID,NAME,THUMB) values (12,'B? t�i li?u 10 ?i?m V?t L�','cource_guitar.jpg');
-Insert into C##NHOM4.COLLECTIONS (ID,NAME,THUMB) values (7,'B? t�i li?u 8+ cho ban T? Nhi�n','thumb');
-Insert into C##NHOM4.COLLECTIONS (ID,NAME,THUMB) values (8,'B? t�i li?u 8+ cho ban X� H?i','about.jpg image/jpeg');
-Insert into C##NHOM4.COLLECTIONS (ID,NAME,THUMB) values (9,'B? t�i li?u 8+ cho ban X� H?i','02Data.ppt application/vnd.ms-powerpoint');
+Insert into C##NHOM4.COLLECTIONS (ID,NAME,THUMB) values (1,'Đề thi HSG Trường chuyên Mary Cury 2023','/public/collection/thumb/cource_piano.jpg');
+Insert into C##NHOM4.COLLECTIONS (ID,NAME,THUMB) values (12,'Bộ tài liệu 10 điểm Vật Lý','cource_guitar.jpg');
+Insert into C##NHOM4.COLLECTIONS (ID,NAME,THUMB) values (7,'Bộ tài liệu 8+ cho ban Tự Nhiên','thumb');
+Insert into C##NHOM4.COLLECTIONS (ID,NAME,THUMB) values (8,'Bộ tài liệu 8+ cho ban Xã Hội','about.jpg image/jpeg');
+Insert into C##NHOM4.COLLECTIONS (ID,NAME,THUMB) values (9,'Bộ tài liệu 8+ cho ban Xã Hội','02Data.ppt application/vnd.ms-powerpoint');
 REM INSERTING into C##NHOM4.COLLECTION_DETAILS
 SET DEFINE OFF;
 Insert into C##NHOM4.COLLECTION_DETAILS (ID,COLLECTION_ID,DOCUMENT_ID) values (21,1,16);
 Insert into C##NHOM4.COLLECTION_DETAILS (ID,COLLECTION_ID,DOCUMENT_ID) values (22,1,2);
 REM INSERTING into C##NHOM4.DOCUMENTS
 SET DEFINE OFF;
-Insert into C##NHOM4.DOCUMENTS (ID,TITLE,SUMMARY,FILE_PATH,VIEW_COUNT,DOWNLOAD_COUNT,TYPE,USER_ID,CATEGORY_ID,CREATED_AT,THUMB,ISAPPROVED,CONTENT) values (2,'T�i li?u h?c t?p','?�y l� m?t t�i li?u h?c t?p','/path/to/file.pdf',6,0,'PDF',1,1,to_date('15-SEP-23','DD-MON-RR'),'/path/to/thumb.png',1,'N?i dung t�i li?u h?c t?p');
-Insert into C##NHOM4.DOCUMENTS (ID,TITLE,SUMMARY,FILE_PATH,VIEW_COUNT,DOWNLOAD_COUNT,TYPE,USER_ID,CATEGORY_ID,CREATED_AT,THUMB,ISAPPROVED,CONTENT) values (1,'T�i li?u h?c t?p','?�y l� m?t t�i li?u h?c t?p','/path/to/file.pdf',0,0,'PDF',1,1,to_date('15-SEP-23','DD-MON-RR'),'/path/to/thumb.png',1,'N?i dung t�i li?u h?c t?p');
-Insert into C##NHOM4.DOCUMENTS (ID,TITLE,SUMMARY,FILE_PATH,VIEW_COUNT,DOWNLOAD_COUNT,TYPE,USER_ID,CATEGORY_ID,CREATED_AT,THUMB,ISAPPROVED,CONTENT) values (19,'?? thi HSG V?t L� t?nh B�nh ??nh','?? thi v?t l�','/public/document/file/de-thi-vat-ly.txt',3,0,'text/plain',1,6,to_date('15-SEP-23','DD-MON-RR'),'/public/document/thumb/courses-6.jpg',1,'?? thi chia s? b?i Nh?n PRO');
-Insert into C##NHOM4.DOCUMENTS (ID,TITLE,SUMMARY,FILE_PATH,VIEW_COUNT,DOWNLOAD_COUNT,TYPE,USER_ID,CATEGORY_ID,CREATED_AT,THUMB,ISAPPROVED,CONTENT) values (16,'?? thi HSG V?t L� Th�nh ph? H? Ch� Minh','?? thi v?t l�','de-thi-vat-ly.txt',0,0,'image/jpeg',1,6,to_date('15-SEP-23','DD-MON-RR'),'de-thi-vat-ly.txt',1,'?? thi chia s? b?i 100');
-Insert into C##NHOM4.DOCUMENTS (ID,TITLE,SUMMARY,FILE_PATH,VIEW_COUNT,DOWNLOAD_COUNT,TYPE,USER_ID,CATEGORY_ID,CREATED_AT,THUMB,ISAPPROVED,CONTENT) values (17,'?? thi HSG V?t L� Th�nh ph? H? Ch� Minh','?? thi v?t l�','courses-6.jpg',0,0,'text/plain',1,6,to_date('15-SEP-23','DD-MON-RR'),'courses-6.jpg',1,'?? thi chia s? b?i 100');
-Insert into C##NHOM4.DOCUMENTS (ID,TITLE,SUMMARY,FILE_PATH,VIEW_COUNT,DOWNLOAD_COUNT,TYPE,USER_ID,CATEGORY_ID,CREATED_AT,THUMB,ISAPPROVED,CONTENT) values (18,'?? thi HSG V?t L� Th�nh ph? H? Ch� Minh','?? thi v?t l�','/public/document/filede-thi-vat-ly.txt',0,0,'text/plain',1,6,to_date('15-SEP-23','DD-MON-RR'),'/public/document/thumbcourses-6.jpg',1,'?? thi chia s? b?i 100');
+Insert into C##NHOM4.DOCUMENTS (ID,TITLE,SUMMARY,FILE_PATH,VIEW_COUNT,DOWNLOAD_COUNT,TYPE,USER_ID,CATEGORY_ID,CREATED_AT,THUMB,ISAPPROVED,CONTENT) values (2,'Tài liệu học tập','Đây là một tài liệu học tập','/path/to/file.pdf',8,0,'PDF',null,null,to_date('15-SEP-23','DD-MON-RR'),'/path/to/thumb.png',1,'Nội dung tài liệu học tập');
+Insert into C##NHOM4.DOCUMENTS (ID,TITLE,SUMMARY,FILE_PATH,VIEW_COUNT,DOWNLOAD_COUNT,TYPE,USER_ID,CATEGORY_ID,CREATED_AT,THUMB,ISAPPROVED,CONTENT) values (1,'Tài liệu học tập','Đây là một tài liệu học tập','/path/to/file.pdf',0,0,'PDF',1,1,to_date('15-SEP-23','DD-MON-RR'),'/path/to/thumb.png',1,'Nội dung tài liệu học tập');
+Insert into C##NHOM4.DOCUMENTS (ID,TITLE,SUMMARY,FILE_PATH,VIEW_COUNT,DOWNLOAD_COUNT,TYPE,USER_ID,CATEGORY_ID,CREATED_AT,THUMB,ISAPPROVED,CONTENT) values (23,'Đề thi HSG Trường chuyên Mary Cury 2023','Mô tả','/public/document/file/02Data.ppt',0,0,'application/vnd.ms-powerpoint',1,1,to_date('17-SEP-23','DD-MON-RR'),'/public/document/thumb/cource_piano.jpg',1,'Nội dung');
+Insert into C##NHOM4.DOCUMENTS (ID,TITLE,SUMMARY,FILE_PATH,VIEW_COUNT,DOWNLOAD_COUNT,TYPE,USER_ID,CATEGORY_ID,CREATED_AT,THUMB,ISAPPROVED,CONTENT) values (24,'Đề thi HSG Trường chuyên Mary Cury 2024','Mô tả','/public/document/file/banner.jpg',0,0,'image/jpeg',1,1,to_date('17-SEP-23','DD-MON-RR'),'/public/document/thumb/ego-vegeta.jpg',1,'Nội dung');
+Insert into C##NHOM4.DOCUMENTS (ID,TITLE,SUMMARY,FILE_PATH,VIEW_COUNT,DOWNLOAD_COUNT,TYPE,USER_ID,CATEGORY_ID,CREATED_AT,THUMB,ISAPPROVED,CONTENT) values (26,'Tài liệu học tập','Đây là một tài liệu học tập','/path/to/file.pdf',0,0,'pdf',1,1,to_date('17-SEP-23','DD-MON-RR'),'/path/to/thumb.png',1,'Nội dung tài liệu học tập');
+Insert into C##NHOM4.DOCUMENTS (ID,TITLE,SUMMARY,FILE_PATH,VIEW_COUNT,DOWNLOAD_COUNT,TYPE,USER_ID,CATEGORY_ID,CREATED_AT,THUMB,ISAPPROVED,CONTENT) values (27,'Tài liệu học tập 1','Đây là một tài liệu học tập','/path/to/file.docx',0,0,'docx',1,1,to_date('17-SEP-23','DD-MON-RR'),'/path/to/thumb.png',1,'Nội dung tài liệu học tập');
+Insert into C##NHOM4.DOCUMENTS (ID,TITLE,SUMMARY,FILE_PATH,VIEW_COUNT,DOWNLOAD_COUNT,TYPE,USER_ID,CATEGORY_ID,CREATED_AT,THUMB,ISAPPROVED,CONTENT) values (19,'Đề thi HSG Vật Lý tỉnh Bình Định','Đề thi vật lý','/public/document/file/de-thi-vat-ly.txt',4,0,'text/plain',1,6,to_date('15-SEP-23','DD-MON-RR'),'/public/document/thumb/courses-6.jpg',1,'Đề thi chia sẻ bởi Nhơn PRO');
+Insert into C##NHOM4.DOCUMENTS (ID,TITLE,SUMMARY,FILE_PATH,VIEW_COUNT,DOWNLOAD_COUNT,TYPE,USER_ID,CATEGORY_ID,CREATED_AT,THUMB,ISAPPROVED,CONTENT) values (16,'Đề thi HSG Vật Lý Thành phố Hồ Chí Minh','Đề thi vật lý','de-thi-vat-ly.txt',0,0,'image/jpeg',1,6,to_date('15-SEP-23','DD-MON-RR'),'de-thi-vat-ly.txt',1,'Đề thi chia sẻ bởi 100');
+Insert into C##NHOM4.DOCUMENTS (ID,TITLE,SUMMARY,FILE_PATH,VIEW_COUNT,DOWNLOAD_COUNT,TYPE,USER_ID,CATEGORY_ID,CREATED_AT,THUMB,ISAPPROVED,CONTENT) values (18,'Đề thi HSG Vật Lý Thành phố Hồ Chí Minh','Đề thi vật lý','/public/document/filede-thi-vat-ly.txt',0,0,'text/plain',1,6,to_date('15-SEP-23','DD-MON-RR'),'/public/document/thumbcourses-6.jpg',1,'Đề thi chia sẻ bởi 100');
 REM INSERTING into C##NHOM4.REVIEWS
 SET DEFINE OFF;
-Insert into C##NHOM4.REVIEWS (ID,DOCUMENT_ID,CONTENT,EMAIL,CREATED_AT,NAME) values (1,2,'T�i li?u n�y r?t hay, th�ch h?p cho nh?ng b?n m?c ti�u 8+','quenhon2002@gmail.com',to_date('16-SEP-23','DD-MON-RR'),'Nh?n Ch�u');
+Insert into C##NHOM4.REVIEWS (ID,DOCUMENT_ID,CONTENT,EMAIL,CREATED_AT,NAME) values (1,2,'Tài liệu này rất hay, thích hợp cho những bạn mục tiêu 8+','quenhon2002@gmail.com',to_date('16-SEP-23','DD-MON-RR'),'Nhơn Châu');
 REM INSERTING into C##NHOM4.USERS
 SET DEFINE OFF;
-Insert into C##NHOM4.USERS (ID,FIRST_NAME,LAST_NAME,LOGIN,PASSWORD) values (1,'Ch�u','Qu? Nh?n','quenhon','$2a$10$QEySBXQdvZP9026iLDzN5Odh4.qrKUdjX/wn2.HWpU1bRdzoYijSG');
+Insert into C##NHOM4.USERS (ID,FIRST_NAME,LAST_NAME,LOGIN,PASSWORD) values (1,'Châu','Quế Nhơn','quenhon','$2a$10$QEySBXQdvZP9026iLDzN5Odh4.qrKUdjX/wn2.HWpU1bRdzoYijSG');
 --------------------------------------------------------
 --  DDL for Index DOCUMENTS_PK
 --------------------------------------------------------
