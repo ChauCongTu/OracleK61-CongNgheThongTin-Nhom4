@@ -71,7 +71,7 @@ public class CollectionController {
                 .map(collection -> {
                     collection.setName(collectionRequest.getName());
 
-                    if (!collectionRequest.getThumb().isEmpty()) {
+                    if (collectionRequest.getThumb() != null) {
                         // Lấy tên file phương tiện
                         MultipartFile thumb = collectionRequest.getThumb();
                         String fileName = thumb.getOriginalFilename();

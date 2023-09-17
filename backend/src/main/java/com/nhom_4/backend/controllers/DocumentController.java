@@ -100,7 +100,7 @@ public class DocumentController {
     Optional<Document> update(@ModelAttribute DocumentRequest documentRequest, @PathVariable Long id) {
         return repository.findById(id)
                 .map(documentItem -> {
-                    if (!documentRequest.getFilePath().isEmpty()) {
+                    if (documentRequest.getFilePath() != null) {
                         String file_path = "/public/document/file/" + documentRequest.getFilePath().getOriginalFilename();
                         String type = documentRequest.getFilePath().getContentType();
                         documentItem.setType(type);
@@ -111,7 +111,7 @@ public class DocumentController {
                             throw new RuntimeException(e);
                         }
                     }
-                    if (!documentRequest.getThumb().isEmpty()) {
+                    if (documentRequest.getThumb() != null) {
                         String thumb_path = "/public/document/thumb/" + documentRequest.getThumb().getOriginalFilename();
                         documentItem.setThumb(thumb_path);
                         try {
