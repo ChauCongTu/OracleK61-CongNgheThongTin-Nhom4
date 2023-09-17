@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 public interface DocumentRepository extends JpaRepository<Document, Long> {
-    @Query("SELECT d FROM Document d WHERE UPPER(d.title) LIKE %?1%")
+    @Query("SELECT d FROM Document d WHERE d.title LIKE %?1%")
     List<Document> findByTitleContaining(String query);
 
     @Query("SELECT d FROM Document d WHERE d.id <> ?1 AND d.category_id = (SELECT d2.category_id FROM Document d2 WHERE d2.id = ?1)")
