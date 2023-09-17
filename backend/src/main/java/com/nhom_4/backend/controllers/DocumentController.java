@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -104,10 +105,20 @@ public class DocumentController {
                         String type = documentRequest.getFilePath().getContentType();
                         documentItem.setType(type);
                         documentItem.setFilePath(file_path);
+                        try {
+                            Files.copy(documentRequest.getFilePath().getInputStream(), this.file.resolve(documentRequest.getFilePath().getOriginalFilename()));
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                     if (!documentRequest.getThumb().isEmpty()) {
                         String thumb_path = "/public/document/thumb/" + documentRequest.getThumb().getOriginalFilename();
                         documentItem.setThumb(thumb_path);
+                        try {
+                            Files.copy(documentRequest.getThumb().getInputStream(), this.image.resolve(documentRequest.getThumb().getOriginalFilename()));
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                     documentItem.setTitle(documentRequest.getTitle());
                     documentItem.setSummary(documentRequest.getSummary());
