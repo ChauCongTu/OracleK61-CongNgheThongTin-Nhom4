@@ -2,6 +2,7 @@ package com.nhom_4.backend.repositories;
 
 import com.nhom_4.backend.entites.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.Optional;
 

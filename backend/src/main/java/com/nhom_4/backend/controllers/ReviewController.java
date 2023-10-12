@@ -27,7 +27,6 @@ public class ReviewController {
         Review review = new Review();
         review.setDocument_id(document_id);
         review.setName(request.getName());
-        review.setEmail(request.getEmail());
         review.setContent(request.getContent());
         return reviewRepository.save(review);
     }
@@ -35,7 +34,6 @@ public class ReviewController {
     public Review editComment(@RequestBody ReviewRequest request, @PathVariable Long id){
         Review review = reviewRepository.findById(id).get();
         review.setName(request.getName());
-        review.setEmail(request.getEmail());
         review.setContent(request.getContent());
         return reviewRepository.save(review);
     }

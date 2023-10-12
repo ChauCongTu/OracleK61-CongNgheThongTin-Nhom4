@@ -20,7 +20,6 @@ public class Review {
 
     private Long document_id;
     private String name;
-    private String email;
     private String content;
     private Date created_at;
 }

@@ -35,4 +35,7 @@ public class User {
     @Column(nullable = false)
     @Size(max = 100)
     private String password;
+
+    @Column
+    private String role;
 }
