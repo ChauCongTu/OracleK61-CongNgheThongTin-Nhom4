@@ -43,6 +43,7 @@ public class UserAuthenticationProvider {
                 .withExpiresAt(validity)
                 .withClaim("firstName", user.getFirstName())
                 .withClaim("lastName", user.getLastName())
+                .withClaim("role", user.getRole())
                 .sign(algorithm);
     }
 
@@ -58,6 +59,7 @@ public class UserAuthenticationProvider {
                 .login(decoded.getSubject())
                 .firstName(decoded.getClaim("firstName").asString())
                 .lastName(decoded.getClaim("lastName").asString())
+                .role(decoded.getClaim("role").asString())
                 .build();
 
         return new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList());

@@ -36,6 +36,6 @@ public class User {
     @Size(max = 100)
     private String password;
 
-    @Column
+    @Column(name = "role")
     private String role;
 }
