@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface ReviewRepository extends JpaRepository<Review, Long> {
-    @Query("SELECT r FROM Review r WHERE r.document_id = ?1")
+    @Query("SELECT r FROM Review r WHERE r.document_id = ?1 ORDER BY r.created_at DESC")
     List<Review> findByDocumentId(Long documentId);
 }
