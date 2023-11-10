@@ -24,6 +24,9 @@ public class Collection {
     @Column(nullable = false)
     private String thumb;
 
+    @Column(name = "NUMOFDOCS")
+    private int numOfDoc;
+
     @OneToMany(targetEntity = CollectionDetail.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "collection_id", referencedColumnName = "id")
     private List<CollectionDetail> details;

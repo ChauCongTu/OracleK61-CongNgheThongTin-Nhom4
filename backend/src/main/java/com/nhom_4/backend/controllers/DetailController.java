@@ -1,6 +1,7 @@
 package com.nhom_4.backend.controllers;
 
 import com.nhom_4.backend.dtos.DetailRequest;
+import com.nhom_4.backend.entites.Collection;
 import com.nhom_4.backend.entites.CollectionDetail;
 import com.nhom_4.backend.repositories.CollectionRepository;
 import com.nhom_4.backend.repositories.DetailRepository;
@@ -9,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -36,8 +36,13 @@ public class DetailController {
         CollectionDetail detail = new CollectionDetail();
         detail.setCollection_id(collection_id);
         detail.setDocument(documentRepository.findById(detailRequest.getDocument_id()).get());
-
-        return detailRepository.save(detail);
+        try {
+            CollectionDetail savedDetail = detailRepository.save(detail);
+        }
+        catch (Exception e) {
+            new CollectionDetail();
+        }
+        return detail;
     }
     @DeleteMapping("/{id}")
     void delete (@PathVariable Long id) {

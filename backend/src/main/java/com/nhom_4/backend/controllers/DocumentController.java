@@ -3,6 +3,7 @@ package com.nhom_4.backend.controllers;
 import com.nhom_4.backend.dtos.DocumentRequest;
 import com.nhom_4.backend.entites.Document;
 import com.nhom_4.backend.repositories.DocumentRepository;
+import com.nhom_4.backend.services.DocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,9 @@ public class DocumentController {
 
     @Autowired
     private final DocumentRepository repository;
+
+    @Autowired
+    private DocumentService service;
 
     public DocumentController(DocumentRepository repository) {
         this.repository = repository;
@@ -72,24 +76,28 @@ public class DocumentController {
         return repository.findById(id);
     }
 
+//    @PutMapping(value = "/{id}")
+//    Optional<Document> update(@RequestBody Document document, @PathVariable Long id) {
+//        return repository.findById(id)
+//                .map(documentItem -> {
+//                    int index = document.getFilePath().lastIndexOf('.');
+//                    String extension = document.getFilePath().substring(index + 1);
+//                    documentItem.setType(extension);
+//                    documentItem.setThumb(document.getThumb());
+//                    documentItem.setFilePath(document.getFilePath());
+//                    documentItem.setTitle(document.getTitle());
+//                    documentItem.setSummary(document.getSummary());
+//                    documentItem.setContent(document.getContent());
+//                    documentItem.setUser_id(document.getUser_id());
+//                    documentItem.setCategory_id(document.getCategory_id());
+//                    return repository.save(documentItem);
+//                });
+//    }
     @PutMapping(value = "/{id}")
     Optional<Document> update(@RequestBody Document document, @PathVariable Long id) {
-        return repository.findById(id)
-                .map(documentItem -> {
-                    int index = document.getFilePath().lastIndexOf('.');
-                    String extension = document.getFilePath().substring(index + 1);
-                    documentItem.setType(extension);
-                    documentItem.setThumb(document.getThumb());
-                    documentItem.setFilePath(document.getFilePath());
-                    documentItem.setTitle(document.getTitle());
-                    documentItem.setSummary(document.getSummary());
-                    documentItem.setContent(document.getContent());
-                    documentItem.setUser_id(document.getUser_id());
-                    documentItem.setCategory_id(document.getCategory_id());
-                    return repository.save(documentItem);
-                });
+        service.updateDocument(document);
+        return Optional.of(document);
     }
-
     @DeleteMapping("/{id}")
     void delete(@PathVariable Long id) {
         repository.deleteById(id);
@@ -103,7 +111,8 @@ public class DocumentController {
 
     @GetMapping("/{id}/related")
     public List<Document> related (@PathVariable Long id) {
-        List<Document> documents = repository.findRelatedDocument(id);
+        List<Document> documents = service.getRelatedDocument(id);
+        documents = repository.findRelatedDocument(id);
         return documents;
     }
 }
