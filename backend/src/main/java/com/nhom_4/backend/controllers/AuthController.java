@@ -9,6 +9,7 @@ import com.nhom_4.backend.repositories.UserRepository;
 import com.nhom_4.backend.services.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -52,5 +53,10 @@ public class AuthController {
     @GetMapping("/api/users/{id}")
     public User one (@PathVariable Long id){
         return userRepository.findById(id).get();
+    }
+
+    @GetMapping("/api/users/{id}/is-admin")
+    public Boolean isAdmin (@PathVariable Long id){
+        return userService.isAdmin(id);
     }
 }

@@ -100,7 +100,7 @@ public class DocumentController {
     }
     @DeleteMapping("/{id}")
     void delete(@PathVariable Long id) {
-        repository.deleteById(id);
+        repository.delete_document(id);
     }
 
     @GetMapping("/search")

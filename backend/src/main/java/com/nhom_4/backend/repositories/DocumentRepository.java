@@ -19,4 +19,7 @@ public interface DocumentRepository extends JpaRepository<Document, Long> {
 
     @Procedure(name = "update_document")
     void update_document(@Param("v_id") Long id, @Param("v_title") String title, @Param("v_summary") String summary, @Param("v_file_path") String filePath, @Param("v_type") String type, @Param("v_category_id") Long categoryId, @Param("v_thumb") String thumb, @Param("v_content") String content);
+
+    @Procedure(name = "delete_document")
+    void delete_document(@Param("p_document_id") Long id);
 }

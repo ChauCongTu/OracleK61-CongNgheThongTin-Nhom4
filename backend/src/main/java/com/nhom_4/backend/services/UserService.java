@@ -56,4 +56,12 @@ public class UserService {
         return userMapper.toUserDto(user);
     }
 
+    public Boolean isAdmin(Long userId){
+        int check = userRepository.isAdmin(userId);
+        if (check == 1)
+            return true;
+        else
+            return false;
+    }
+
 }

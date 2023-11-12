@@ -34,10 +34,7 @@ public class CollectionController {
     public ResponseEntity<Collection> createCollection(@RequestBody Collection collectionRequest) {
         Collection collection = new Collection();
         collection.setName(collectionRequest.getName());
-
         collection.setThumb(collectionRequest.getThumb());
-
-        // Lưu collection vào cơ sở dữ liệu
         collectionRepository.save(collection);
 
         return ResponseEntity.ok(collection);
@@ -60,6 +57,6 @@ public class CollectionController {
 
     @DeleteMapping("/{id}")
     void delete(@PathVariable Long id) {
-        collectionRepository.deleteById(id);
+        collectionRepository.delete_collection(id);
     }
 }
