@@ -76,23 +76,6 @@ public class DocumentController {
         return repository.findById(id);
     }
 
-//    @PutMapping(value = "/{id}")
-//    Optional<Document> update(@RequestBody Document document, @PathVariable Long id) {
-//        return repository.findById(id)
-//                .map(documentItem -> {
-//                    int index = document.getFilePath().lastIndexOf('.');
-//                    String extension = document.getFilePath().substring(index + 1);
-//                    documentItem.setType(extension);
-//                    documentItem.setThumb(document.getThumb());
-//                    documentItem.setFilePath(document.getFilePath());
-//                    documentItem.setTitle(document.getTitle());
-//                    documentItem.setSummary(document.getSummary());
-//                    documentItem.setContent(document.getContent());
-//                    documentItem.setUser_id(document.getUser_id());
-//                    documentItem.setCategory_id(document.getCategory_id());
-//                    return repository.save(documentItem);
-//                });
-//    }
     @PutMapping(value = "/{id}")
     Optional<Document> update(@RequestBody Document document, @PathVariable Long id) {
         service.updateDocument(document);

@@ -17,7 +17,7 @@ const CollectionDetail = () => {
   }, [data]);
 
   return (
-    <Container size={1440} mt={"lg"}>
+    <Container size={1280} mt={"lg"}>
       <Title order={1} align="center">
         {data?.name}
       </Title>

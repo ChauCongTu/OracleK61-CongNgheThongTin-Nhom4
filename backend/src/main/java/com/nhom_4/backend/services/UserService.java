@@ -58,10 +58,9 @@ public class UserService {
 
     public Boolean isAdmin(Long userId){
         int check = userRepository.isAdmin(userId);
-        if (check == 1)
-            return true;
-        else
-            return false;
+        return (check == 1) ? true : false;
     }
-
+    public void updateUserInfo(Long id, User user){
+        userRepository.update_user(id, user.getFirstName(), user.getLastName(), user.getLogin(), user.getRole());
+    }
 }

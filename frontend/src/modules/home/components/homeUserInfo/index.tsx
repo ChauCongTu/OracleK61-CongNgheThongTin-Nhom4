@@ -23,8 +23,8 @@ const HomeUserInfo: FC<HomeUserInfoProps> = ({ user }) => {
     <Container>
       <Center>
         <Flex direction={"column"} align={"center"}>
-          <Title>Xin chào</Title>
-          <Text>{user.firstName + " " + user.lastName}</Text>
+          <Text size={18}>Xin chào</Text>
+          <Text weight={700} size={24}>{user.firstName + " " + user.lastName}</Text>
           <Space h={"sm"} />
           <Flex gap={"lg"}>
             {user.role === UserRole.Admin && (

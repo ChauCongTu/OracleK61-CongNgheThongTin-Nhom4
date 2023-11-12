@@ -55,6 +55,12 @@ public class AuthController {
         return userRepository.findById(id).get();
     }
 
+    @PutMapping("/api/users/{id}")
+    public User edit (@RequestBody User user, @PathVariable Long id) {
+        userService.updateUserInfo(id, user);
+        return user;
+    }
+
     @GetMapping("/api/users/{id}/is-admin")
     public Boolean isAdmin (@PathVariable Long id){
         return userService.isAdmin(id);

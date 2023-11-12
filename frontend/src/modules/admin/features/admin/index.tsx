@@ -19,7 +19,7 @@ const Admin = () => {
   } = useGetCollections();
 
   return (
-    <Container size={1440} mt={100}>
+    <Container size={1280} mt={100}>
       <Tabs defaultValue="categories" variant="pills">
         <Tabs.List>
           <Tabs.Tab value="categories" icon={<BiCategoryAlt size="0.8rem" />}>
