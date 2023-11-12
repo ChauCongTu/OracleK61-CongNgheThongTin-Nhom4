@@ -14,12 +14,12 @@ const ListCourses: FC<ListCoursesProps> = ({ title, id, documents }) => {
   return (
     <div>
       <Flex justify="space-between" align="center">
-        <Title order={3} weight={500} color="indigo">
+        <Title order={3} weight={700} color="indigo">
           {title}
         </Title>
         <Link to={`/categories/${id}`}>
           <Button variant="outline">
-            <span>Xem thêm</span>
+            <span>+ Xem thêm</span>
           </Button>
         </Link>
       </Flex>

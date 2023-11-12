@@ -74,7 +74,7 @@ const DocumentComment: FC<DocumentCommentProps> = ({
       ) : (
         <>
           <Text size={"sm"} mt={"sm"}>
-            Đăng nhập để bình luận
+            Vui lòng đăng nhập để bình luận
           </Text>
 
           <Button mt={"sm"} onClick={() => setIsShowModalLogin(true)}>
@@ -96,14 +96,19 @@ const DocumentComment: FC<DocumentCommentProps> = ({
 
       <Flex mt={"xs"} direction={"column"} gap={"sm"}>
         {reviews?.map((review) => (
-          <Box key={review.id} w={"100%"}>
-            <Flex>
-              <Title order={6} style={{ flexBasis: "120px" }}>
-                {review.name}:
+          <Flex>
+            <Box>
+              <img src="https://cdn.discordapp.com/attachments/1100753623849377835/1173149393457778748/user-icon-2048x2048-ihoxz4vq.png" width={"45px"}/>
+            </Box>
+            <Box key={review.id} ml={20}>
+              <Title weight={700} order={5} size={18} style={{ flexBasis: "120px" }}>
+                {review.name}
               </Title>
+              <Text size={"sm"}> {new Date(review.created_at).toLocaleDateString()}</Text>
               <Text size={"md"}>{review.content}</Text>
-            </Flex>
-          </Box>
+            </Box>
+          </Flex>
+
         ))}
       </Flex>
     </>

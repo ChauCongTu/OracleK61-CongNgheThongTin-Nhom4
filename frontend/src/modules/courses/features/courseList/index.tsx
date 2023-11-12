@@ -8,8 +8,8 @@ const CourseList = () => {
 
   const { data } = useGetCategory(Number(id));
   return (
-    <Container size={1440} mt={50}>
-      <Title order={3} weight={500} color="indigo" align="center">
+    <Container size={1280} mt={50}>
+      <Title order={1} weight={500} color="indigo" align="center">
         {data?.data.name}
       </Title>
 

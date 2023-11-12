@@ -27,7 +27,7 @@ const Home = () => {
         />
       </div>
 
-      <Container size={1440} mt={"lg"}>
+      <Container size={1280} mt={"lg"}>
         <Grid>
           <Grid.Col span={8}>
             <HomeSlider />

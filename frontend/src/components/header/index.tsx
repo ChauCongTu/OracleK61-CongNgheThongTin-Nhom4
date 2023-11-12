@@ -13,6 +13,7 @@ interface HeaderProps {
 const Header = (props: HeaderProps) => {
   return (
     <MHeader height={60} p="md">
+      
       <Flex justify={"space-between"}>
         <Link to={"/"} className={classNames.logo}>
           <Text size="md" weight={700}>

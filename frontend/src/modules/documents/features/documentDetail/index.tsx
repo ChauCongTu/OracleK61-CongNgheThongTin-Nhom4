@@ -45,8 +45,9 @@ const DocumentDetail = () => {
   }, [data]);
 
   return (
-    <Container size={1440} mt={"lg"}>
+    <Container size={1280} mt={"lg"}>
       <Title order={2}>{data?.title}</Title>
+
       <Flex justify={"flex-end"}>
         <Button
           color="yellow"
@@ -57,11 +58,16 @@ const DocumentDetail = () => {
         >
           <span>Tải xuống</span>
         </Button>
+
       </Flex>
       <Box mt={"lg"}>
         <Flex gap={"lg"} h={"80vh"}>
-          <DocView docs={docs} />
+          <Box w={"75%"} >
+            <DocView docs={docs} />
+          </Box>
+
           <Box
+            w={"25%"}
             style={{
               flexShrink: 0,
             }}
@@ -89,13 +95,12 @@ const DocumentDetail = () => {
         </Flex>
       </Box>
 
-      <Box mt={"lg"}>
-        <Title order={4}>Mô tả</Title>
+      <Box mt={"lg"} w={"75%"}>
         <Text>{data?.content}</Text>
       </Box>
 
       <Box mt={"lg"}>
-        <Title order={4}>Bình luận</Title>
+        <Title order={3}>BÌNH LUẬN</Title>
 
         <DocumentComment
           reviews={comments?.data}

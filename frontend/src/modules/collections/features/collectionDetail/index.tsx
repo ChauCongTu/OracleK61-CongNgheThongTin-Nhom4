@@ -18,14 +18,14 @@ const CollectionDetail = () => {
 
   return (
     <Container size={1440} mt={"lg"}>
-      <Title order={2} align="center">
+      <Title order={1} align="center">
         {data?.name}
       </Title>
 
       <Space h={"xl"} />
 
       <Title order={3} align="left">
-        Tài liệu trong bộ sưu tập
+        Bộ sưu tập {documents.length} có tài liệu
       </Title>
       <Space h={"lg"} />
       <Grid>
